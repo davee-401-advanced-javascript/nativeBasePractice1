@@ -5,7 +5,7 @@ import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
-import { StyleProvider, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { StyleProvider, Container, Content } from 'native-base';
 
 import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/platform';

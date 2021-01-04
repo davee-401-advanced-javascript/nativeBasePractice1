@@ -1,6 +1,8 @@
-import React, { useState, useEffect, Component, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
+
+import { Button } from 'native-base';
 
 export default function Main() {
 
@@ -53,9 +55,6 @@ export default function Main() {
     zRef.current = [];
 
     console.log('Starting Subscription');
-    console.log('Start xRef:', xRef);
-    console.log('Start yRef:', yRef);
-    console.log('Start zRef:', zRef);
 
     setSubscription(
       Accelerometer.addListener(accelerometerData => {
@@ -63,21 +62,19 @@ export default function Main() {
         xRef.current = [...xRef.current, accelerometerData.x];
         yRef.current = [...yRef.current, accelerometerData.y];
         zRef.current = [...zRef.current, accelerometerData.z];
-
       })
     );
 
  
     setTimeout(() => {
+
       console.log('Ending Subscription');
       Accelerometer.removeAllListeners();
 
-      console.log('xArray:', xRef.current);
-      console.log('yArray:', yRef.current);
-      console.log('zArray:', zRef.current);
-
       let highest = findHighestValue(xRef.current, yRef.current, zRef.current).toFixed(2);
+
       setPersonScore(highest);
+
     }, 3000);
 
   }
@@ -103,11 +100,6 @@ export default function Main() {
   return(
     <View style={styles.container}>
 
-    <View style={styles.titleArea}>
-      <Text style={styles.titleText}>Measure your Punch Speed</Text>
-    </View>
-
-
     <View style={styles.scoreArea}>
       <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
       <Text style={styles.score}> {personScore} g</Text>
@@ -115,11 +107,10 @@ export default function Main() {
 
     <View style={styles.recordArea}>
       <Text style={styles.text}> Press Start to Record</Text>
-      <TouchableOpacity onPress={startButton} style={styles.button}>
+      <TouchableOpacity onPress={startButton} style={[styles.button, styles.start]}>
         <Text>START</Text>
       </TouchableOpacity>
     </View>
-
 
     <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
     <Text style={styles.text}>
@@ -127,10 +118,6 @@ export default function Main() {
     </Text>
     
     <View style={styles.buttonContainer}>
-
-      {/* <TouchableOpacity onPress={subscription ? _unsubscribe : _subscribe} style={styles.button}>
-        <Text>{subscription ? 'On' : 'Off'}</Text>
-      </TouchableOpacity> */}
 
       <TouchableOpacity onPress={_slow} style={[styles.button, styles.middleButton]}>
         <Text>Slow</Text>
@@ -142,7 +129,7 @@ export default function Main() {
 
     </View>
 
-    <View style={styles.recordArea}>
+    <View style={styles.leaderBoard}>
       <TouchableOpacity style={styles.button}>
         <Text style={styles.leaderBoardText}>Leader Boards</Text>
       </TouchableOpacity>
@@ -166,22 +153,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     textAlign: 'center',
   },
-  titleArea: {
-    marginTop: 20,
-    fontSize: 24,
-    textAlign: 'center',
-    marginBottom: 50,
-  },
-  titleText: {
-    fontSize: 24,
-    textAlign: 'center',
-  },
   scoreArea: {
-    height: '20%',
+    height: '24%',
     width: '80%',
     backgroundColor: 'rgb(9, 205, 9)',
     alignItems: 'center',
-    marginLeft: '10%'
+    marginLeft: '10%',
+    marginTop: 30
   },
   scoreText: {
     marginTop: 25
@@ -211,12 +189,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
     padding: 10,
   },
+  start: {
+    backgroundColor: 'rgb(197, 8, 8)',
+    borderRadius: 10,
+    height: 50,
+    width: '90%',
+    marginLeft: '5%'
+  },
   middleButton: {
     borderLeftWidth: 1,
     borderRightWidth: 1,
     borderColor: '#ccc',
   },
+  leaderBoard: {
+    height: '15%',
+    marginTop: 40,
+    width: '90%',
+    marginLeft: '5%',
+    borderRadius: 5,
+    backgroundColor: 'rgb(0, 26, 255)'
+  },
   leaderBoardText: {
-    fontSize: 20
+    fontSize: 20,
   }
 });
