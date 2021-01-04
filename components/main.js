@@ -106,9 +106,9 @@ export default function Main() {
     </View>
 
     <View style={styles.recordArea}>
-      <Text style={styles.text}> Press Start to Record</Text>
+      <Text style={styles.text}> Press START to Record: You will have a 3 second time window to record.</Text>
       <TouchableOpacity onPress={startButton} style={[styles.button, styles.start]}>
-        <Text>START</Text>
+        <Text style={styles.buttonText}>START</Text>
       </TouchableOpacity>
     </View>
 
@@ -130,8 +130,8 @@ export default function Main() {
     </View>
 
     <View style={styles.leaderBoard}>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.leaderBoardText}>Leader Boards</Text>
+      <TouchableOpacity style={[styles.button, styles.leaderBoardButton]}>
+        <Text style={styles.buttonText}>Leader Boards</Text>
       </TouchableOpacity>
     </View>
 
@@ -206,10 +206,14 @@ const styles = StyleSheet.create({
     marginTop: 40,
     width: '90%',
     marginLeft: '5%',
-    borderRadius: 5,
-    backgroundColor: 'rgb(0, 26, 255)'
+    
   },
-  leaderBoardText: {
+  leaderBoardButton: {
+    backgroundColor: 'rgb(0, 26, 255)',
+    borderRadius: 10,
+  },
+  buttonText: {
     fontSize: 20,
+    color: 'white'
   }
 });
