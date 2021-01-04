@@ -8,8 +8,10 @@ import { Ionicons } from '@expo/vector-icons';
 import { StyleProvider, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 
 import getTheme from './native-base-theme/components';
+import material from './native-base-theme/variables/platform';
 
 import MyHeader from './components/my-header.js';
+import Main from './components/main.js'
 import MyFooter from './components/my-footer.js';
 
 
@@ -32,25 +34,15 @@ export default function App() {
   const app = !isReady ? (
     <AppLoading />
   ) : (
-    <Container >
-      <MyHeader />
-        <Content>
-          <Text>
-            This is Content Section
-          </Text>
-        </Content>
-      <MyFooter />
-    </Container>
+    <StyleProvider style={getTheme(material)}>
+      <Container >
+        <MyHeader />
+          <Content>
+            <Main />
+          </Content>
+        <MyFooter />
+      </Container>
+    </StyleProvider>
   );
   return app;
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
