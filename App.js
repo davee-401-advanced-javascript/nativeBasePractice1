@@ -5,7 +5,12 @@ import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
-import { Container, Text } from 'native-base';
+import { StyleProvider, Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+
+import getTheme from './native-base-theme/components';
+
+import MyHeader from './components/my-header.js';
+import MyFooter from './components/my-footer.js';
 
 
 export default function App() {
@@ -27,35 +32,25 @@ export default function App() {
   const app = !isReady ? (
     <AppLoading />
   ) : (
-    <Container>
-      <Text>Open up App.js to start working on your app!</Text>
+    <Container >
+      <MyHeader />
+        <Content>
+          <Text>
+            This is Content Section
+          </Text>
+        </Content>
+      <MyFooter />
     </Container>
   );
   return app;
 }
 
 
-
-
-
-// import { StatusBar } from 'expo-status-bar';
-// import React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function App() {
-//   return (
-//     <View style={styles.container}>
-//       <Text>Open up App.js to start working on your app!</Text>
-//       <StatusBar style="auto" />
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
