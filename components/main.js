@@ -47,20 +47,14 @@ export default function Main() {
   };
 
 
-  // create 3 second timer
-    // find count down timer
-    // find buzz
-    // find sound
-
   const startButton = () => {
 
+    setIsRecording(true);
     Vibration.vibrate([100,200,100]);
 
     xRef.current = [];
     yRef.current = [];
     zRef.current = [];
-
-    console.log('Starting Subscription');
 
     setSubscription(
       Accelerometer.addListener(accelerometerData => {
@@ -71,23 +65,20 @@ export default function Main() {
       })
     );
 
- 
     setTimeout(() => {
 
-      console.log('Ending Subscription');
       Accelerometer.removeAllListeners();
 
       let highest = findHighestValue(xRef.current, yRef.current, zRef.current).toFixed(2);
 
       setPersonScore(highest);
-
+      setIsRecording(false);
     }, 3000);
 
   }
 
 
   function findHighestValue(arr1, arr2, arr3) {
-
     let highest = 0;
     for(let i = 0; i < arr1.length; i++) {
       if(Math.abs(arr1[i]) > highest) {
@@ -106,12 +97,19 @@ export default function Main() {
   return(
     <View style={styles.container}>
 
-    <CountDown />
+    <If condition={isRecording}>
+      <Then>
+        <CountDown />
+      </Then>
+      <Else>
+        <View style={styles.scoreArea}>
+          <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
+          <Text style={styles.score}> {personScore} g</Text>
+        </View>
+      </Else>
+    </If>
 
-    <View style={styles.scoreArea}>
-      <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
-      <Text style={styles.score}> {personScore} g</Text>
-    </View>
+
 
     <View style={styles.recordArea}>
       <Text style={styles.text}> Press START to Record: You will have a 3 second time window to record.</Text>
