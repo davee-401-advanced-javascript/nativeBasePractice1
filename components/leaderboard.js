@@ -2,7 +2,6 @@ import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import { Container, Content } from 'native-base';
 
-import MyHeader from './my-header.js';
 import MyFooter from './my-footer.js';
 
 export default function LeaderBoard({ navigation }) {
