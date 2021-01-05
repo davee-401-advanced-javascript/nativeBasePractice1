@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View, Vibration } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 
-import { Button } from 'native-base';
+import { If, Then, Else, When, Unless, Switch, Case, Default } from 'react-if';
+
+import CountDown from './countdown.js';
 
 export default function Main() {
 
@@ -11,6 +13,8 @@ export default function Main() {
     y: 0,
     z: 0,
   });
+
+  const [isRecording, setIsRecording] = useState(false);
 
   const { x, y, z } = data;
 
@@ -101,6 +105,8 @@ export default function Main() {
 
   return(
     <View style={styles.container}>
+
+    <CountDown />
 
     <View style={styles.scoreArea}>
       <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
