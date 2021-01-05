@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View, Vibration } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Vibration } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 
-import { If, Then, Else, When, Unless, Switch, Case, Default } from 'react-if';
+import { Container, Content } from 'native-base';
+
+import { If, Then, Else } from 'react-if';
 
 import CountDown from './countdown.js';
+import MyHeader from './my-header.js';
+import MyFooter from './my-footer.js';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function Main() {
+export default function Main({ navigation }) {
 
   const [data, setData] = useState({
     x: 0,
@@ -95,53 +100,62 @@ export default function Main() {
   }
 
   return(
-    <View style={styles.container}>
 
-    <If condition={isRecording}>
-      <Then>
-        <CountDown />
-      </Then>
-      <Else>
-        <View style={styles.scoreArea}>
-          <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
-          <Text style={styles.score}> {personScore} g</Text>
-        </View>
-      </Else>
-    </If>
+    <Container >
+      <MyHeader />
+        <Content>
+          <View style={styles.container}>
+
+            <If condition={isRecording}>
+              <Then>
+                <CountDown />
+              </Then>
+              <Else>
+                <View style={styles.scoreArea}>
+                  <Text style={styles.scoreText}> Your MAX Acceleration: </Text>
+                  <Text style={styles.score}> {personScore} g</Text>
+                </View>
+              </Else>
+            </If>
 
 
 
-    <View style={styles.recordArea}>
-      <Text style={styles.text}> Press START to Record: You will have a 3 second time window to record.</Text>
-      <TouchableOpacity onPress={startButton} style={[styles.button, styles.start]}>
-        <Text style={styles.buttonText}>START</Text>
-      </TouchableOpacity>
-    </View>
+            <View style={styles.recordArea}>
+              <Text style={styles.text}> Press START to Record: You will have a 3 second time window to record.</Text>
+              <TouchableOpacity onPress={startButton} style={[styles.button, styles.start]}>
+                <Text style={styles.buttonText}>START</Text>
+              </TouchableOpacity>
+            </View>
 
-    <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
-    <Text style={styles.text}>
-      x: {round(x)} y: {round(y)} z: {round(z)}
-    </Text>
-    
-    <View style={styles.buttonContainer}>
+            <Text style={styles.text}>Accelerometer: (in Gs where 1 G = 9.81 m s^-2)</Text>
+            <Text style={styles.text}>
+              x: {round(x)} y: {round(y)} z: {round(z)}
+            </Text>
+            
+            <View style={styles.buttonContainer}>
 
-      <TouchableOpacity onPress={_slow} style={[styles.button, styles.middleButton]}>
-        <Text>Slow</Text>
-      </TouchableOpacity>
+              <TouchableOpacity onPress={_slow} style={[styles.button, styles.middleButton]}>
+                <Text>Slow</Text>
+              </TouchableOpacity>
 
-      <TouchableOpacity onPress={_fast} style={styles.button}>
-        <Text>Fast</Text>
-      </TouchableOpacity>
+              <TouchableOpacity onPress={_fast} style={styles.button}>
+                <Text>Fast</Text>
+              </TouchableOpacity>
 
-    </View>
+            </View>
 
-    <View style={styles.leaderBoard}>
-      <TouchableOpacity style={[styles.button, styles.leaderBoardButton]}>
-        <Text style={styles.buttonText}>Leader Boards</Text>
-      </TouchableOpacity>
-    </View>
+            <View style={styles.leaderBoard}>
+              <TouchableOpacity 
+                style={[styles.button, styles.leaderBoardButton]}
+                onPress={() => navigation.navigate('LeaderBoard')}>
+                <Text style={styles.buttonText}>Leader Boards</Text>
+              </TouchableOpacity>
+            </View>
 
-  </View>
+          </View>
+        </Content>
+      <MyFooter />
+    </Container>
   )
 }
 

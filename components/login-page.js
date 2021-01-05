@@ -1,0 +1,34 @@
+import React from 'react';
+import {View, Text, StyleSheet, Button} from 'react-native';
+import { Container, Content } from 'native-base';
+
+import MyHeader from './my-header.js';
+import MyFooter from './my-footer.js';
+
+export default function LoginPage({ navigation }) {
+  return (
+
+    <Container >
+
+        <Content>
+          <View style={styles.container}>
+
+            <Button
+              title="Go to Main Page"
+              onPress={() => navigation.navigate('Main')}
+            />
+          </View>
+        </Content>
+      <MyFooter />
+    </Container>      
+
+  )
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1, 
+    alignItems: 'center', 
+    justifyContent: 'center'
+  }
+})

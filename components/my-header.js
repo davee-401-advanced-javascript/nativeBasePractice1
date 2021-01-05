@@ -5,7 +5,7 @@ import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
 
-import { Container, Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import { Container, Header, Title, Content, Left, Right, Body } from 'native-base';
 
 
 export default function MyHeader() {
