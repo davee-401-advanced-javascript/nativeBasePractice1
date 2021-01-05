@@ -1,18 +1,21 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Button} from 'react-native';
 import { Container, Content } from 'native-base';
 
 import MyHeader from './my-header.js';
 import MyFooter from './my-footer.js';
 
-export default function LeaderBoard() {
+export default function LeaderBoard({ navigation }) {
   return (
 
     <Container >
-      <MyHeader />
+
         <Content>
           <View style={styles.container}>
-            <Text>Leader Board</Text>
+            <Button
+              title="Go to back to Main Page"
+              onPress={() => navigation.navigate('Main')}
+            />
           </View>
         </Content>
       <MyFooter />

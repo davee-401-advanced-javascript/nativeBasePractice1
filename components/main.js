@@ -9,8 +9,9 @@ import { If, Then, Else } from 'react-if';
 import CountDown from './countdown.js';
 import MyHeader from './my-header.js';
 import MyFooter from './my-footer.js';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function Main() {
+export default function Main({ navigation }) {
 
   const [data, setData] = useState({
     x: 0,
@@ -144,7 +145,9 @@ export default function Main() {
             </View>
 
             <View style={styles.leaderBoard}>
-              <TouchableOpacity style={[styles.button, styles.leaderBoardButton]}>
+              <TouchableOpacity 
+                style={[styles.button, styles.leaderBoardButton]}
+                onPress={() => navigation.navigate('LeaderBoard')}>
                 <Text style={styles.buttonText}>Leader Boards</Text>
               </TouchableOpacity>
             </View>

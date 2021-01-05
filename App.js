@@ -18,11 +18,12 @@ import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/platform';
 
 
-
 import Main from './components/main.js'
 import LoginPage from './components/login-page.js';
 import LeaderBoard from './components/leaderboard.js';
 
+
+const Stack = createStackNavigator();
 
 export default function App() {
   const [isReady, setReady] = useState(false);
@@ -60,8 +61,13 @@ export default function App() {
   ) : (
     <NavigationContainer>
       <StyleProvider style={getTheme(material)}>
+        <Stack.Navigator initialRouteName="Login">
 
-        <Main />
+          <Stack.Screen name="Login" component={LoginPage} />
+          <Stack.Screen name='Main' component={Main} />
+          <Stack.Screen name='LeaderBoard' component={LeaderBoard} />
+
+        </Stack.Navigator>
 
       </StyleProvider>
     </NavigationContainer>
