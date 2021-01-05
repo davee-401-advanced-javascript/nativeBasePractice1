@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View} from "react-native";
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
 
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
@@ -50,15 +52,17 @@ export default function App() {
   const app = !isReady ? (
     <AppLoading />
   ) : (
-    <StyleProvider style={getTheme(material)}>
-      <Container >
-        <MyHeader />
-          <Content>
-            <Main />
-          </Content>
-        <MyFooter />
-      </Container>
-    </StyleProvider>
+    <NavigationContainer>
+      <StyleProvider style={getTheme(material)}>
+        <Container >
+          <MyHeader />
+            <Content>
+              <Main />
+            </Content>
+          <MyFooter />
+        </Container>
+      </StyleProvider>
+    </NavigationContainer>
   );
   return app;
 }
