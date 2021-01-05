@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View, Vibration } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 
 import { Button } from 'native-base';
@@ -49,6 +49,8 @@ export default function Main() {
     // find sound
 
   const startButton = () => {
+
+    Vibration.vibrate([100,200,100]);
 
     xRef.current = [];
     yRef.current = [];
@@ -159,7 +161,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(9, 205, 9)',
     alignItems: 'center',
     marginLeft: '10%',
-    marginTop: 30
+    marginTop: 30,
+    borderRadius: 5
   },
   scoreText: {
     marginTop: 25
@@ -191,7 +194,7 @@ const styles = StyleSheet.create({
   },
   start: {
     backgroundColor: 'rgb(197, 8, 8)',
-    borderRadius: 10,
+    borderRadius: 15,
     height: 50,
     width: '90%',
     marginLeft: '5%'
@@ -204,13 +207,12 @@ const styles = StyleSheet.create({
   leaderBoard: {
     height: '15%',
     marginTop: 40,
-    width: '90%',
-    marginLeft: '5%',
-    
+    width: '80%',
+    marginLeft: '10%',
   },
   leaderBoardButton: {
     backgroundColor: 'rgb(0, 26, 255)',
-    borderRadius: 10,
+    borderRadius: 3,
   },
   buttonText: {
     fontSize: 20,

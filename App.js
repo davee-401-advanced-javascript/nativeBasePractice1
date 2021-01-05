@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View} from "react-native";
 
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
@@ -13,15 +13,31 @@ import material from './native-base-theme/variables/platform';
 import MyHeader from './components/my-header.js';
 import Main from './components/main.js'
 import MyFooter from './components/my-footer.js';
+import { Accelerometer } from 'expo-sensors';
 
 
 export default function App() {
-  [isReady, setReady] = useState(false);
+  const [isReady, setReady] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     native_base();
     setReady(true);
+    load();
    });
+
+   async function load() {
+     try{
+      let {status} = await Accelerometer.isAvailableAsync();
+
+      if(status !== 'granted') {
+        setErrorMessage('Access to Accelerometer is needed to run the app')
+        return;
+      }
+     } catch (error) {
+      console.log(error);
+     }
+   }
 
    async function native_base() {
      await Font.loadAsync({
