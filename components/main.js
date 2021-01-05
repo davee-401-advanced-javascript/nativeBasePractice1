@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, TouchableOpacity, TouchableWithoutFeedback, View, Vibration } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, Vibration } from 'react-native';
 import { Accelerometer } from 'expo-sensors';
 
 import { If, Then, Else, When, Unless, Switch, Case, Default } from 'react-if';
