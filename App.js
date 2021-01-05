@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View} from "react-native";
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
+
 
 import AppLoading from 'expo-app-loading'
 import * as Font from 'expo-font';
 import { Ionicons } from '@expo/vector-icons';
+import { Accelerometer } from 'expo-sensors';
+
+
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
 
 import { StyleProvider, Container, Content } from 'native-base';
-
 import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/platform';
+
 
 import MyHeader from './components/my-header.js';
 import Main from './components/main.js'
 import MyFooter from './components/my-footer.js';
-import { Accelerometer } from 'expo-sensors';
 
 
 export default function App() {
