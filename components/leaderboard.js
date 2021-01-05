@@ -1,11 +1,23 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import { Container, Content } from 'native-base';
+
+import MyHeader from './my-header.js';
+import MyFooter from './my-footer.js';
 
 export default function LeaderBoard() {
   return (
-    <View style={styles.container}>
-      <Text>Leader Board</Text>
-    </View>
+
+    <Container >
+      <MyHeader />
+        <Content>
+          <View style={styles.container}>
+            <Text>Leader Board</Text>
+          </View>
+        </Content>
+      <MyFooter />
+    </Container>      
+
   )
 }
 

@@ -18,9 +18,8 @@ import getTheme from './native-base-theme/components';
 import material from './native-base-theme/variables/platform';
 
 
-import MyHeader from './components/my-header.js';
+
 import Main from './components/main.js'
-import MyFooter from './components/my-footer.js';
 import LoginPage from './components/login-page.js';
 import LeaderBoard from './components/leaderboard.js';
 
@@ -61,13 +60,9 @@ export default function App() {
   ) : (
     <NavigationContainer>
       <StyleProvider style={getTheme(material)}>
-        <Container >
-          <MyHeader />
-            <Content>
-              <Main />
-            </Content>
-          <MyFooter />
-        </Container>
+
+        <Main />
+
       </StyleProvider>
     </NavigationContainer>
   );
