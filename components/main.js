@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
   },
   leaderBoardButton: {
     backgroundColor: 'rgb(0, 26, 255)',
-    borderRadius: 3,
+    borderRadius: 5,
   },
   buttonText: {
     fontSize: 20,
